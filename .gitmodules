@@ -1,0 +1,3 @@
+[submodule "compSys-e2021-pub"]
+	path = compSys-e2021-pub
+	url = git@github.com:diku-compSys/compSys-e2021-pub.git
