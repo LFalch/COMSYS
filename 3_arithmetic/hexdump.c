@@ -3,14 +3,14 @@
 #include <string.h>
 
 int main(int argc, char const* argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s <file>\n", argv[0]);
+    if (argc > 2) {
+        fprintf(stderr, "Usage: %s [file]\n", argv[0]);
         return 1;
     }
 
     char* ends[8] = {" ", " ", " ", " ", " ", " ", " ", "  "};
 
-    FILE* file = fopen(argv[1], "rb");
+    FILE* file = argc == 2 ? fopen(argv[1], "rb") : stdin;
 
     if (file == NULL) {
         fprintf(stderr, "Could not open file: %s\n", strerror(errno));
