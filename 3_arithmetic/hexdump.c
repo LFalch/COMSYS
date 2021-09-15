@@ -33,8 +33,8 @@ int main(int argc, char const* argv[]) {
             printf("%02x%s", bytes[i], ends[i & 7]);
             index++;
         }
-        if ((index & 0xf) != 0) {
-            int spaces = ((index & 0xf) - 16) * 3 + read / 8;
+        if (read != 16) {
+            int spaces = 2 + (16 - read) * 3 + read / 8;
             for (int i = 0; i < spaces; i++)
                 putchar(' ');
         }
