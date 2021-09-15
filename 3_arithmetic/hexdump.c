@@ -17,7 +17,7 @@ int main(int argc, char const* argv[]) {
         return 1;
     }
 
-    char bytes[16];
+    unsigned char bytes[16];
     int index = 0;
 
     for (;;) {
@@ -34,7 +34,7 @@ int main(int argc, char const* argv[]) {
             index++;
         }
         if (read != 16) {
-            int spaces = 2 + (16 - read) * 3 + read / 8;
+            int spaces = 1 + (16 - read) * 3 + (16 - read) / 8;
             for (int i = 0; i < spaces; i++)
                 putchar(' ');
         }
