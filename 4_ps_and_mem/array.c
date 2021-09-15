@@ -1,0 +1,1 @@
+lecture/exercise_code/array.c
