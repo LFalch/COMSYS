@@ -26,7 +26,7 @@ int stack_mem_optimise(struct stack* stack) {
     void** newStack = realloc(stack->stack, newCap * sizeof(void *));
     if (newStack == NULL) return 1;
     stack->stack = newStack;
-    printf("#%ld: %ld -> %ld\n", stack->size, stack->capacity, newCap);
+    // printf("#%ld: %ld -> %ld\n", stack->size, stack->capacity, newCap);
     stack->capacity = newCap;
     return 0;
 }
