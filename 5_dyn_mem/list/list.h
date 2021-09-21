@@ -1,5 +1,6 @@
 #ifndef LIST_H
 #define LIST_H
+#define USE_ARRAY 1
 
 struct list;
 

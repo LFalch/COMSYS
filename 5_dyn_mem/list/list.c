@@ -1,4 +1,9 @@
 #include "list.h"
+#if USE_ARRAY == 1
+
+#include "list_array.c"
+
+#else
 
 #include <stdlib.h>
 
@@ -14,9 +19,12 @@ struct list {
 };
 
 struct list *list_create() {
-    struct list *list = malloc(sizeof(list));
-    list->head = NULL;
-    list->last = NULL;
+    struct list *list = malloc(sizeof(struct list));
+    if (list != NULL) {
+        list->head = NULL;
+        list->last = NULL;
+    }
+
     return list;
 }
 
@@ -36,7 +44,7 @@ int list_insert_first(struct list *list, void *data) {
     new_head->next = list->head;
     new_head->prev = NULL;
 
-    list->head->prev = new_head;
+    if(list->head != NULL) list->head->prev = new_head;
     list->head = new_head;
     if (list->last == NULL) list->last = list->head;
     return 0;
@@ -50,6 +58,7 @@ int list_remove_first(struct list *list, void **dest) {
     *dest = old_head->data;
     list->head = old_head->next;
     free(old_head);
+    if (list->head == NULL) list->last = NULL;
     return 0;
 }
 
@@ -60,3 +69,5 @@ void list_map(struct list *list, map_fn f, void *aux) {
         node = node->next;
     }
 }
+
+#endif
