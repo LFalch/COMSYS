@@ -1,0 +1,1 @@
+../lecture/exercise_code/sum-array-rows.c
