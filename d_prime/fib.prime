@@ -1,26 +1,25 @@
 fib:    # unsigned long fib(unsigned long x);
     movq %rcx, %rax
     cbae $1, %rcx, L1
-    subq $24, %rsp
-    movq %rcx, 16(%rsp)
-    movq %r11, 8(%rsp)
+    subq $16, %rsp
+    movq %rcx, 8(%rsp)
+    movq %r11, (%rsp)
     subq $1, %rcx
     call fib, %r11
-    movq %rax, (%rsp)
-    movq 16(%rsp), %rcx
+    movq 8(%rsp), %rcx
+    movq %rax, 8(%rsp)
     subq $2, %rcx
     call fib, %r11
-    movq (%rsp), %rdx
-    addq %rdx, %rax
-    movq 8(%rsp), %r11
-    movq 16(%rsp), %rcx
-    addq $24, %rsp
+    movq 8(%rsp), %rcx
+    addq %rcx, %rax
+    movq (%rsp), %r11
+    addq $16, %rsp
 L1:
     ret %r11
 
 Start:
     # change this immediate value to calculate a different term
-    movq $14, %rcx
+    movq $25, %rcx
     call fib, %r11
     movq %rax, %rcx
     # use prune -show to see the value of this register which will be the result
