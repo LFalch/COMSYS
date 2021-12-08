@@ -1,3 +1,6 @@
 [submodule "compSys-e2021-pub"]
 	path = compSys-e2021-pub
 	url = git@github.com:diku-compSys/compSys-e2021-pub.git
+[submodule "x86prime"]
+	path = x86prime
+	url = https://github.com/finnschiermer/x86prime
