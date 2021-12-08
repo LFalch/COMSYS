@@ -1,0 +1,5 @@
+_start:
+movq $10, %rax
+movq $24, %rcx
+leaq (, %rax, 4), %rdx
+andq %rcx, %rdx
