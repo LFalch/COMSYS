@@ -1,3 +1,4 @@
+    .align 32
 sumrec: # unsigned long sumnaive(unsigned long n)
     movq %rcx, %rax
     cbe $0, %rcx, L1
@@ -13,6 +14,7 @@ sumrec: # unsigned long sumnaive(unsigned long n)
 L1:
     ret %r11
 
+    .align 32
 sumloop:
     xorq %rax, %rax
 L2:
@@ -23,36 +25,54 @@ L2:
 L3:
     ret %r11
 
+    .align 32
 sumgauss:
     leaq 1(%rcx), %rax
     mulq %rcx, %rax
     shrq $1, %rax
     ret %r11
 
+    .align 32
 startr:
-    movq $11, %rcx
+    movq $45, %rcx
     call sumrec, %r11
     movq %rax, %rax
     stop
+    .align 32
 startl:
     movq $45, %rcx
     call sumloop, %r11
     movq %rax, %rax
     stop
+    .align 32
+startl2:
+    movq $5, %rcx
+    call sumloop, %r11
+    movq %rax, %rax
+    stop
+    .align 32
 startg:
     movq $45, %rcx
     call sumgauss, %r11
     movq %rax, %rax
     stop
+    .align 32
+startginlined:
+    movq $45, %rcx
+    leaq 1(%rcx), %rax
+    mulq %rcx, %rax
+    shrq $1, %rax
+    movq %rax, %rax
+    stop
+    .align 32
 startg2:
     movq $5, %rcx
     call sumgauss, %r11
     movq %rax, %rax
     stop
+    .align 32
 startg3:
     movq $400, %rcx
     call sumgauss, %r11
     movq %rax, %rax
     stop
-mul:
-    mulq %rax, %rbx
